@@ -5,16 +5,23 @@ class CustomElevatedButton extends StatelessWidget {
     this.buttonText,
     {
     super.key,
+    this.onTap,
   });
 
   final String buttonText;
+  final void Function()? onTap;
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       width: 253,
         child: ElevatedButton(
-          onPressed: () {}, 
+          style: ElevatedButton.styleFrom(
+            backgroundColor: Colors.white,
+          ),
+          onPressed: () {
+            onTap!();
+          },
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 4),
             child: Text(
