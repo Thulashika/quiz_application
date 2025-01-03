@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:quiz_app/components/custom_elevated_button.dart';
 
 class StartScreen extends StatelessWidget {
   const StartScreen({super.key});
@@ -10,7 +11,7 @@ class StartScreen extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Text(
+          const Text(
           'QUIZ TIME',
            style: TextStyle(color: Colors.white, fontSize: 36),
           ),
@@ -21,19 +22,7 @@ class StartScreen extends StatelessWidget {
             height: 300,
           ),
           const Gap(83),
-          Container(
-            height: 51.19,
-            width: 303,
-            child: ElevatedButton(
-              onPressed: () {
-                print('button pressed');
-              }, 
-              child: const Text(
-                'START QUIZ',
-                style: TextStyle(color: Color(0xff013568), fontSize: 16),
-              ),
-            ),
-          )
+          const CustomElevatedButton('START QUIZ')
         ],
       ));
   }
