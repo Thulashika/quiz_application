@@ -54,17 +54,21 @@ import 'package:quiz_app/data/questions.dart';
 
 
 class QuizScreen extends StatefulWidget {
-  const QuizScreen({super.key});
+  const QuizScreen({super.key, required this.onQuizComplete});
+
+  final void Function() onQuizComplete;
 
   @override
   State<QuizScreen> createState() => _QuizScreenState();
 }
 
 class _QuizScreenState extends State<QuizScreen> {
+  List<String> answers = [];
+  int index = 0;
   @override
   Widget build(BuildContext context) {
     // List <String> nameList = ['Thulasi', 'Ram', 'Bala', 'Mathi'];
-    QuizQuestion currentQuestion = questions[4];
+    QuizQuestion currentQuestion = questions[index];
     return  Center(
       child: Column(
         mainAxisSize: MainAxisSize.min,
@@ -94,9 +98,22 @@ class _QuizScreenState extends State<QuizScreen> {
           ...currentQuestion.answers.map((String value) {
             return Padding(
               padding: const EdgeInsets.only(bottom: 8.0),
-              child: CustomElevatedButton(value),
+              child: CustomElevatedButton(
+                value,
+                onTap: () {
+                  answers.add(value);
+                  if(questions.length > index + 1) {
+                    setState(() {
+                      index++;
+                    });
+                  }
+                  else {
+                    widget.onQuizComplete;
+                  }
+                },
+                ),
             );
-          }),
+          }),   
         ],
       ),
     );
