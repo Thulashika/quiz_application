@@ -6,7 +6,13 @@ import 'package:quiz_app/data/questions.dart';
 // var newList = questions.where();
 
 class StartScreen extends StatelessWidget {
-  const StartScreen({super.key});
+  const StartScreen({super.key, required this.xyz});
+
+  final void Function() xyz;
+
+//   void onButtonPressed() {
+//   print('the start button pressed');
+// }
 
   @override
   Widget build(BuildContext context) {
@@ -25,9 +31,7 @@ class StartScreen extends StatelessWidget {
             height: 300,
           ),
           const Gap(83),
-          CustomElevatedButton('START QUIZ', onTap: () {
-            
-          }),
+          CustomElevatedButton('START QUIZ', onTap: xyz),
         ],
       ));
   }
