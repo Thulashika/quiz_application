@@ -31,7 +31,11 @@ class _MainScreenState extends State<MainScreen> {
 
   void switchScreen() {
     setState(() {
-      currentScreen = const QuizScreen();
+      currentScreen = QuizScreen(
+        onQuizComplete: () {
+          print('Quiz complete');
+        },
+      );
     });
   }
 
