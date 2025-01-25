@@ -18,8 +18,16 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
+  
+  dynamic currentScreen; 
 
-  Widget currentScreen = const StartScreen(); 
+  @override
+  void initState() {
+    currentScreen = StartScreen(
+      xyz: switchScreen,
+    );
+    super.initState();
+  }
 
   void switchScreen() {
     setState(() {
