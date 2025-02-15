@@ -4,6 +4,7 @@ import 'package:quiz_app/results.dart';
 import 'package:quiz_app/start_screen.dart';
 
 void main() {
+  
   runApp(
     const MainScreen()); 
 }
