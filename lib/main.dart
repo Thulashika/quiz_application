@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:quiz_app/quiz.dart';
-import 'package:quiz_app/quiz/question_screen.dart';
+import 'package:quiz_app/results.dart';
 import 'package:quiz_app/start_screen.dart';
 
 void main() {
+  
   runApp(
     const MainScreen()); 
 }
@@ -21,10 +22,25 @@ class _MainScreenState extends State<MainScreen> {
   
   dynamic currentScreen; 
 
+    /*
+    
+    uploadScore(String playerID, dyanmic scores, Function(value) onScoreUpload) {
+        // send the player id and the score to the server
+        // get the response from the server
+        
+        onScoreUpload(serverResponse);
+    }
+    // a callback function
+    printSuccessMessage(value) {
+      print('Success');
+    }
+    uploadScore('P001', '5-3', printSuccessMessage)
+  */
+
   @override
   void initState() {
     currentScreen = StartScreen(
-      xyz: switchScreen,
+      onButtonPressed: switchScreen, xyz: () {  },
     );
     super.initState();
   }
@@ -32,8 +48,19 @@ class _MainScreenState extends State<MainScreen> {
   void switchScreen() {
     setState(() {
       currentScreen = QuizScreen(
-        onQuizComplete: () {
-          print('Quiz complete');
+        // onQuizComplete: () {
+        onQuizComplete: (answers) {
+          // print('Quiz complete');
+          setState(() {
+            // currentScreen = const ResultsScreen();
+            currentScreen = ResultsScreen(answers, () {
+              setState(() {
+                currentScreen = StartScreen(
+                  onButtonPressed: switchScreen, xyz: () {  },
+                );
+              });
+            });
+          });
         },
       );
     });
