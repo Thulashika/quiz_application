@@ -56,7 +56,8 @@ import 'package:quiz_app/data/questions.dart';
 class QuizScreen extends StatefulWidget {
   const QuizScreen({super.key, required this.onQuizComplete});
 
-  final void Function() onQuizComplete;
+  // final void Function() onQuizComplete;
+  final void Function(List<String> answers) onQuizComplete;
 
   @override
   State<QuizScreen> createState() => _QuizScreenState();
@@ -95,7 +96,8 @@ class _QuizScreenState extends State<QuizScreen> {
           // CustomElevatedButton(currentQuestion.answers[2]),
           // Gap(24),
           // CustomElevatedButton(currentQuestion.answers[3]),
-          ...currentQuestion.answers.map((String value) {
+          // ...currentQuestion.answers.map((String value) {
+          ...currentQuestion.getShuffledAnswers().map((String value) {
             return Padding(
               padding: const EdgeInsets.only(bottom: 8.0),
               child: CustomElevatedButton(
@@ -108,7 +110,8 @@ class _QuizScreenState extends State<QuizScreen> {
                     });
                   }
                   else {
-                    widget.onQuizComplete;
+                    // widget.onQuizComplete;
+                     widget.onQuizComplete(answers);
                   }
                 },
                 ),
